@@ -1,22 +1,52 @@
 // Space Animations with enhanced effects - Optimized for performance
+let isAnimating = false;
+let lastAnimationTime = 0;
+const ANIMATION_THROTTLE = 1000 / 30; // Target 30fps
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Delay non-critical animations
-  setTimeout(() => {
-    initSpaceAnimations();
-  }, 300);
+  // Use requestIdleCallback for non-critical initializations
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(() => {
+      initScrollAnimations();
+      initProjectCards();
+      initSkillBars();
+      initContactForm();
+    }, { timeout: 1000 });
+  } else {
+    // Fallback for browsers that don't support requestIdleCallback
+    setTimeout(() => {
+      initScrollAnimations();
+      initProjectCards();
+      initSkillBars();
+      initContactForm();
+    }, 300);
+  }
   
-  // Initialize critical UI elements immediately
-  initScrollAnimations();
-  initProjectCards();
-  initSkillBars();
-  initContactForm();
+  // Only initialize heavy animations if user is not on a mobile device and prefers reduced motion is off
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
-  // Delay heavy animations
-  setTimeout(() => {
-    initParallaxEffects();
-    init3DEffects();
-  }, 600);
+  if (!isMobile && !prefersReducedMotion) {
+    // Use intersection observer to only initialize when needed
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initSpaceAnimations();
+          initParallaxEffects();
+          init3DEffects();
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    // Observe the main content area
+    const mainContent = document.querySelector('main');
+    if (mainContent) {
+      observer.observe(mainContent);
+    }
+  }
 });
+
 // Remove duplicate initialization
 // initPageTransitions(); // Already initialized elsewhere
 
@@ -25,95 +55,155 @@ function initInteractiveBackground() {
   const container = document.querySelector('.animated-bg');
   if (!container) return;
   
-  // Create interactive particles - reduced count for better performance
-  const particleCount = Math.min(25, Math.floor(window.innerWidth / 50)); // Reduced particle count
+  // Check if user prefers reduced motion
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) return;
+  
+  // Calculate particle count based on screen size and performance
+  const particleCount = Math.min(
+    window.innerWidth < 768 ? 5 : 10, // Even fewer on mobile
+    Math.floor(window.innerWidth / 150) // Base count on screen width
+  );
+  
   const particles = [];
+  const fragment = document.createDocumentFragment();
   
   // Remove existing particles
-  const existingParticles = container.querySelectorAll('.interactive-particle');
-  existingParticles.forEach(p => p.remove());
+  container.textContent = '';
   
-  // Create new particles
+  // Create new particles in a document fragment for better performance
   for (let i = 0; i < particleCount; i++) {
     const particle = document.createElement('div');
-    particle.classList.add('interactive-particle');
+    particle.className = 'interactive-particle';
     
-    // Random position
-    const x = Math.random() * 100;
-    const y = Math.random() * 100;
-    particle.style.left = `${x}%`;
-    particle.style.top = `${y}%`;
+    // Set initial styles
+    const size = Math.random() * 3 + 1; // Smaller particles
+    const opacity = Math.random() * 0.4 + 0.1; // More subtle
     
-    // Random size
-    const size = Math.random() * 5 + 2;
-    particle.style.width = `${size}px`;
-    particle.style.height = `${size}px`;
-    
-    // Random opacity
-    const opacity = Math.random() * 0.5 + 0.2;
-    particle.style.opacity = opacity.toString();
+    Object.assign(particle.style, {
+      position: 'absolute',
+      left: `${Math.random() * 100}%`,
+      top: `${Math.random() * 100}%`,
+      width: `${size}px`,
+      height: `${size}px`,
+      opacity: opacity,
+      transform: 'translate3d(0, 0, 0)',
+      willChange: 'transform, opacity',
+      transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease',
+      pointerEvents: 'none',
+      borderRadius: '50%',
+      backgroundColor: '#fff',
+      boxShadow: '0 0 5px 2px rgba(255, 255, 255, 0.3)'
+    });
     
     // Store original position
-    particle.dataset.originalX = x;
-    particle.dataset.originalY = y;
+    particle.dataset.originalX = parseFloat(particle.style.left);
+    particle.dataset.originalY = parseFloat(particle.style.top);
     
-    container.appendChild(particle);
+    fragment.appendChild(particle);
     particles.push(particle);
   }
   
-  // Add mouse move listener with throttling for performance
-  let lastMoveTime = 0;
-  const moveThrottle = 30; // Only process every 30ms
+  container.appendChild(fragment);
   
-  document.addEventListener('mousemove', (e) => {
-    const now = Date.now();
-    if (now - lastMoveTime < moveThrottle) return;
-    lastMoveTime = now;
-    
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    
-    // Use requestAnimationFrame for smoother rendering
-    requestAnimationFrame(() => {
-      particles.forEach(particle => {
-        const rect = particle.getBoundingClientRect();
-        const particleX = rect.left + rect.width / 2;
-        const particleY = rect.top + rect.height / 2;
+  // Optimized mouse move handler with throttling and performance in mind
+  let lastMouseX = 0;
+  let lastMouseY = 0;
+  let isProcessing = false;
+  let animationFrameId = null;
+  
+  // Function to update particle positions
+  const updateParticles = (mouseX, mouseY) => {
+    particles.forEach(particle => {
+      if (!particle) return;
+      
+      const rect = particle.getBoundingClientRect();
+      const particleX = rect.left + rect.width / 2;
+      const particleY = rect.top + rect.height / 2;
+      
+      // Calculate distance (squared for better performance)
+      const dx = mouseX - particleX;
+      const dy = mouseY - particleY;
+      const distanceSq = dx * dx + dy * dy;
+      
+      // Only process particles within interaction radius (squared for performance)
+      if (distanceSq < 22500) { // 150^2 = 22500
+        const distance = Math.sqrt(distanceSq);
+        const angle = Math.atan2(dy, dx);
+        const force = (150 - distance) / 15; // Reduced force for subtler effect
         
-        // Calculate distance
-        const dx = mouseX - particleX;
-        const dy = mouseY - particleY;
-        const distance = Math.sqrt(dx * dx + dy * dy);
+        const targetX = parseFloat(particle.dataset.originalX) - (Math.cos(angle) * force);
+        const targetY = parseFloat(particle.dataset.originalY) - (Math.sin(angle) * force);
         
-        // Move particles away from mouse with distance falloff
-        if (distance < 150) {
-          const angle = Math.atan2(dy, dx);
-          const force = (150 - distance) / 10;
-          
-          const originalX = parseFloat(particle.dataset.originalX);
-          const originalY = parseFloat(particle.dataset.originalY);
-          
-          const offsetX = -Math.cos(angle) * force;
-          const offsetY = -Math.sin(angle) * force;
-          
-          particle.style.left = `${originalX + offsetX}%`;
-          particle.style.top = `${originalY + offsetY}%`;
-          particle.style.transform = 'scale(1.5)';
-        } else {
-          // Return to original position
-          const originalX = parseFloat(particle.dataset.originalX);
-          const originalY = parseFloat(particle.dataset.originalY);
-          
-          const currentX = parseFloat(particle.style.left);
-          const currentY = parseFloat(particle.style.top);
-          
-          particle.style.left = `${originalX + (currentX - originalX) * 0.9}%`;
-          particle.style.top = `${originalY + (currentY - originalY) * 0.9}%`;
-          particle.style.transform = '';
-        }
-      });
+        // Use transform for better performance
+        particle.style.transform = `translate3d(${targetX - parseFloat(particle.dataset.originalX)}%, ${targetY - parseFloat(particle.dataset.originalY)}%, 0)`;
+        particle.style.opacity = '0.6';
+      } else {
+        // Return to original position with smooth transition
+        particle.style.transform = 'translate3d(0, 0, 0)';
+        particle.style.opacity = particle.style.opacity || '0.3';
+      }
     });
-  });
+    
+    isProcessing = false;
+  };
+  
+  // Throttled mousemove handler
+  const handleMouseMove = (e) => {
+    lastMouseX = e.clientX;
+    lastMouseY = e.clientY;
+    
+    if (!isProcessing) {
+      isProcessing = true;
+      
+      // Cancel any pending animation frame
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+      
+      // Use requestAnimationFrame for smooth animations
+      animationFrameId = requestAnimationFrame(() => {
+        updateParticles(lastMouseX, lastMouseY);
+      });
+    }
+  };
+  
+  // Add passive event listener for better scrolling performance
+  document.addEventListener('mousemove', handleMouseMove, { passive: true });
+  
+  // Optimized window resize handler with debouncing
+  let resizeTimeout;
+  const handleResize = () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      particles.forEach(particle => {
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+        Object.assign(particle.style, {
+          left: `${x}%`,
+          top: `${y}%`,
+          transform: 'translate3d(0, 0, 0)'
+        });
+        particle.dataset.originalX = x;
+        particle.dataset.originalY = y;
+      });
+    }, 250); // Debounce resize events
+  };
+  
+  // Use passive event listener for better performance
+  window.addEventListener('resize', handleResize, { passive: true });
+  
+  // Clean up function
+  return () => {
+    clearTimeout(resizeTimeout);
+    window.removeEventListener('resize', handleResize);
+    document.removeEventListener('mousemove', handleMouseMove);
+    
+    // Clean up any pending animation frames
+    if (animationFrameId) {
+      cancelAnimationFrame(animationFrameId);
+    }
+  };  
 }
 
 // Parallax Effects
@@ -309,6 +399,7 @@ function initSpaceAnimations() {
         const newHue = (currentHue + 30) % 360;
         nearbyNebula.style.backgroundColor = `hsla(${newHue}, ${saturation}%, ${lightness}%, 0.3)`;
       });
+      animationFrameId = null;
     });
     
     container.appendChild(nebula);
