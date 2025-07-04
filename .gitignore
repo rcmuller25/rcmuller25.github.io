@@ -1,0 +1,27 @@
+# Ignore specific HTML files
+skills.html
+projects.html
+
+# Ignore markdown files except README.md
+*.md
+!README.md
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore editor directories and files
+.vscode/
+.idea/
+*.sublime-*
+
+# Ignore environment files
+.env
+.env.local
+
+# Ignore node modules if any
+node_modules/
+
+# Ignore build directories
+/dist/
+/build/

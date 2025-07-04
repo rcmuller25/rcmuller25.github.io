@@ -1,0 +1,545 @@
+/* Basic Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes floatCode {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100vw + 100%)); }
+}
+
+/* Enhanced Space Animations */
+@keyframes cosmic-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+    filter: hue-rotate(0deg) blur(60px);
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+    filter: hue-rotate(45deg) blur(70px);
+  }
+}
+
+@keyframes star-twinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(0.8);
+    box-shadow: 0 0 5px 1px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+    box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 20px 6px var(--primary);
+  }
+}
+
+@keyframes nebula-drift {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    transform: translate(5%, 2%) rotate(2deg) scale(1.05);
+  }
+  66% {
+    transform: translate(-3%, -3%) rotate(-1deg) scale(0.98);
+  }
+  100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+}
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: var(--min-opacity, 0.2); 
+    transform: scale(0.8); 
+    filter: blur(1px);
+  }
+  50% { 
+    opacity: var(--max-opacity, 1); 
+    transform: scale(1.2); 
+    filter: blur(0px);
+  }
+}
+
+@keyframes float {
+  0% { transform: translate(0, 0) rotate(0deg); }
+  33% { transform: translate(var(--float-x, 10px), var(--float-y, -15px)) rotate(var(--rotate, 5deg)); }
+  66% { transform: translate(calc(var(--float-x, 10px) * -0.5), calc(var(--float-y, -15px) * -0.5)) rotate(calc(var(--rotate, 5deg) * -0.5)); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes nebulaPulse {
+  0%, 100% { 
+    opacity: var(--min-opacity, 0.3); 
+    filter: hue-rotate(0deg) blur(var(--min-blur, 60px)); 
+  }
+  50% { 
+    opacity: var(--max-opacity, 0.6); 
+    filter: hue-rotate(var(--hue-rotate, 30deg)) blur(var(--max-blur, 70px)); 
+  }
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shootingStar {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px) translateY(0);
+  }
+  10% {
+    opacity: 1;
+  }
+  20% {
+    opacity: 0;
+    transform: translateX(calc(100vw + 100px)) translateY(100px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(calc(100vw + 100px)) translateY(100px);
+  }
+}
+
+@keyframes particleBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: 
+      translate(
+        calc(cos(var(--angle)) * var(--speed) * 50px), 
+        calc(sin(var(--angle)) * var(--speed) * 50px)
+      ) 
+      scale(0);
+  }
+}
+
+/* Page Transition Animation */
+@keyframes pageTransitionIn {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+
+@keyframes pageTransitionOut {
+  0% { transform: scaleX(1); transform-origin: right; }
+  100% { transform: scaleX(0); transform-origin: right; }
+}
+
+/* Cursor Follower Animation */
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 0.5; transform: scale(1); }
+}
+
+/* Animated Background */
+.animated-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -10;
+  overflow: hidden;
+  pointer-events: none;
+  background: transparent;
+  mix-blend-mode: screen;
+}
+
+/* Vitals Pulse Effect with enhanced visuals */
+.vitals-pulse {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(127, 90, 240, 0.2) 0%,
+    rgba(0, 245, 212, 0.3) 50%,
+    rgba(255, 56, 100, 0.2) 100%
+  );
+  opacity: 0.6;
+  animation: pulse 8s ease-in-out infinite;
+  z-index: -8;
+  filter: blur(30px);
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+  mix-blend-mode: screen;
+}
+
+/* Code Snippets Animation with enhanced styling */
+.code-snippets {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -9;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0.4;
+  mix-blend-mode: overlay;
+}
+
+.code-snippet {
+  position: absolute;
+  color: var(--primary);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 1.1rem;
+  opacity: 0.6;
+  text-shadow: 0 0 10px rgba(127, 90, 240, 0.4);
+  transition: all 0.3s ease;
+  mix-blend-mode: multiply;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  transition: all 0.3s ease-out;
+  will-change: transform, opacity;
+  filter: blur(0.5px);
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Space Elements */
+.space-star {
+  position: absolute;
+  background-color: #fff;
+  border-radius: 50%;
+  animation: star-twinkle var(--twinkle-duration, 4s) ease-in-out infinite;
+  z-index: -5;
+  will-change: transform, opacity, box-shadow;
+  transition: all 0.3s ease;
+  --min-opacity: 0.2;
+  --max-opacity: 0.9;
+}
+
+.space-star:hover {
+  animation-duration: 1s !important;
+  transform: scale(2);
+  cursor: none;
+}
+
+.space-nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(var(--min-blur, 60px));
+  opacity: var(--min-opacity, 0.3);
+  animation: 
+    cosmic-pulse var(--pulse-duration, 15s) ease-in-out infinite, 
+    nebula-drift var(--float-duration, 30s) ease-in-out infinite,
+    rotate var(--rotation-duration, 120s) linear infinite;
+  z-index: -6;
+  will-change: transform, opacity, filter;
+  mix-blend-mode: screen;
+  transition: all 0.5s ease;
+  --min-opacity: 0.3;
+  --max-opacity: 0.5;
+  --min-blur: 60px;
+  --max-blur: 70px;
+  --hue-rotate: 30deg;
+  --float-x: 20px;
+  --float-y: -30px;
+  --rotate: 10deg;
+}
+
+.space-nebula:hover {
+  filter: blur(40px);
+  opacity: 0.6;
+  transform: scale(1.1);
+}
+
+/* Interactive Particles */
+.interactive-particle {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: -4;
+  box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.3);
+  will-change: transform, left, top;
+}
+
+.interactive-particles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -7;
+  pointer-events: none;
+}
+
+.interactive-particle {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  box-shadow: 0 0 10px 2px rgba(127, 90, 240, 0.3);
+  transition: transform 0.3s ease-out;
+  will-change: transform, opacity;
+}
+
+/* Orbital Elements */
+
+/* Shooting Stars */
+@keyframes shootingStar {
+  0% {
+    transform: translateY(0) translateX(0) rotate(var(--angle, 45deg));
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) translateX(100vw) rotate(var(--angle, 45deg));
+    opacity: 0;
+  }
+}
+
+.shooting-star {
+  position: absolute;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.8) 60%, rgba(255, 255, 255, 0));
+  border-radius: 50%;
+  animation: shootingStar 1s linear forwards;
+  z-index: -3;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.5);
+  will-change: transform, opacity;
+}
+
+/* 3D Card Effects */
+.card-glare {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.project-card, .detail-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  will-change: transform, box-shadow;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Parallax Elements */
+.parallax {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+.hero-parallax {
+  will-change: transform;
+  transition: transform 0.2s ease-out;
+}
+
+/* Shooting Star */
+.shooting-star {
+  position: absolute;
+  width: 100px !important;
+  height: 2px !important;
+  background: linear-gradient(
+    90deg, 
+    rgba(255, 255, 255, 0) 0%, 
+    rgba(255, 255, 255, 0.8) 50%, 
+    rgba(255, 255, 255, 0) 100%
+  ) !important;
+  box-shadow: 0 0 10px 1px rgba(127, 90, 240, 0.8) !important;
+  border-radius: 0 !important;
+  opacity: 1;
+  animation: shootingStar var(--duration, 2s) ease-out infinite var(--delay, 0s) !important;
+  z-index: -4;
+}
+
+/* Cursor Follower */
+.cursor-follower {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at center,
+    rgba(127, 90, 240, 0.15),
+    rgba(0, 245, 212, 0.1),
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: -3;
+  transform: translate(-50%, -50%);
+  opacity: 0.7;
+  filter: blur(20px);
+  animation: pulseGlow 3s ease-in-out infinite;
+  mix-blend-mode: screen;
+}
+
+/* Page Transition */
+.page-transition {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--color-bg-primary);
+  z-index: 9999;
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+.page-transition.active {
+  animation: pageTransitionIn 0.5s ease-in-out forwards;
+  pointer-events: all;
+}
+
+.page-transition.loaded {
+  transform: scaleX(1);
+  animation: pageTransitionOut 0.5s ease-in-out forwards;
+}
+
+/* Skill Particles */
+.skill-particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--primary);
+  animation: particleBurst 1s ease-out forwards;
+  z-index: 1;
+}
+
+/* Form Input Ripple */
+.input-ripple {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  background: var(--gradient-primary);
+  border-radius: 50%;
+  transform: scale(0);
+  opacity: 0.2;
+  transition: transform 1s ease-out, opacity 1s ease-out;
+  z-index: -1;
+}
+
+/* Form Submit Button States */
+.btn.loading {
+  position: relative;
+  pointer-events: none;
+  color: transparent;
+}
+
+.btn.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: rotate 0.8s linear infinite;
+}
+
+.btn.success {
+  background: var(--color-success);
+}
+
+.btn-icon {
+  display: inline-block;
+  margin-left: 8px;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Animation Classes for Scroll Animations */
+[data-animate] {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animated.fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+.animated.fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animated.fadeInDown {
+  animation: fadeInDown 0.8s ease-out forwards;
+}
+
+/* Enhanced Hero Section */
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, 
+    rgba(127, 90, 240, 0.15), 
+    rgba(0, 245, 212, 0.15),
+    rgba(255, 56, 100, 0.15)
+  );
+  opacity: 0.6;
+  animation: pulse 8s ease-in-out infinite;
+  z-index: -8;
+  filter: blur(30px);
+  pointer-events: none;
+  will-change: transform, opacity, filter;
+  mix-blend-mode: screen;
+}

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f0e17">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>About Me - Romano Muller | Full Stack Developer</title>
+    <meta name="description" content="Learn more about Romano Muller, a Full Stack Developer with a passion for creating impactful healthcare technology solutions." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- ... existing code ... -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚕️</text></svg>">
+    <script src="scripts/main.js" defer></script>
+  </head>
+  <body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+      <div class="vitals-pulse"></div>
+      <div class="code-snippets">
+        <div class="code-snippet" data-speed="0.3">const developer = "Romano Muller";</div>
+        <div class="code-snippet" data-speed="0.5">function buildFuture() { return innovation; }</div>
+        <div class="code-snippet" data-speed="0.7">while(learning) { skills++; }</div>
+        <div class="code-snippet" data-speed="0.4">import { passion } from './healthcare';</div>
+        <div class="code-snippet" data-speed="0.6">export default Solutions;</div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav" id="nav">
+      <div class="nav-container">
+        <div class="nav-brand">
+          <a href="index.html" class="brand-text">RM</a>
+          <div class="brand-pulse"></div>
+        </div>
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="index.html" class="nav-link" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+          <li><a href="about.html" class="nav-link active" data-page="about"><i class="fas fa-user"></i> About</a></li>
+          <li><a href="index.html#skills" class="nav-link" data-page="skills"><i class="fas fa-bolt"></i> Skills</a></li>
+          <li><a href="index.html#projects" class="nav-link" data-page="projects"><i class="fas fa-briefcase"></i> Projects</a></li>
+          <li><a href="contact.html" class="nav-link" data-page="contact"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+        <div class="nav-actions">
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <span class="sun-icon">☀️</span>
+            <span class="moon-icon">🌙</span>
+          </button>
+          <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+            <span class="hamburger"></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="about-page">
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">👤 About Me</span>
+            <h1 class="section-title">Romano Muller - Bridging Technology and Community Impact</h1>
+          </div>
+          
+          <div class="about-grid">
+            <div class="about-content" style="grid-column: 1 / -1;">
+              <div class="about-text">
+                <p class="lead">I'm Romano Muller—a learning-focused and community-rooted developer whose career began in the trenches of ICT support and evolved through volunteering in education and public healthcare.</p>
+                
+                <p>From wrangling dusty desktop towers to building patient-centric mobile apps, I've always approached technology as a vehicle for real-world solutions. Whether setting up tablet labs, teaching growth mindsets, or reconciling medical records with downtime protocols, my experience spans the human and digital side of systems.</p>
+                
+                <p>I'm currently completing a full-stack development course with the FNB App Academy, diving deep into frameworks like Django REST, Python, React Native, and Firebase. My stack reflects the breadth of my environments—health information systems, admin tools, offline-first workflows, and now progressive web apps for outpatient referrals.</p>
+                
+                <p>What drives me? Practical tools for real people. I code with curiosity, ethical intent, and precision honed from the pressure of frontline clinics. Every function I write stems from a challenge I've seen firsthand. My goal is to build accessible, resilient software that amplifies community outcomes while making tech feel seamless and human.</p>
+                
+                <p>Whether it's debugging a legacy system, centering a stubborn `<div>`, or mapping clinical workflows into modern UI—I'm always pushing toward smarter, compassionate design.</p>
+                
+                <div class="about-details">
+                  <div class="detail-card" data-tilt data-tilt-scale="1.05" data-tilt-max="10">
+                    <div class="detail-icon">
+                      <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                      <h4>Name</h4>
+                      <p>Romano Muller</p>
+                    </div>
+                  </div>
+                  
+                  <div class="detail-card" data-tilt data-tilt-scale="1.05" data-tilt-max="10">
+                    <div class="detail-icon">
+                      <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                      <h4>Education</h4>
+                      <p>Full-Stack Development Student</p>
+                      <p class="text-muted">FNB App Academy</p>
+                    </div>
+                  </div>
+                  </div>
+                  
+                  <div class="detail-card" data-tilt data-tilt-scale="1.05" data-tilt-max="10">
+                    <div class="detail-icon">
+                      <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                      <h4>Email</h4>
+                      <p>rcmuller25@gmail.com</p>
+                    </div>
+                  </div>
+                  
+                  <div class="detail-card" data-tilt data-tilt-scale="1.05" data-tilt-max="10">
+                    <div class="detail-icon">
+                      <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                      <h4>Location</h4>
+                      <p>South Africa</p>
+                    </div>
+                  </div>
+                  
+                  <div class="detail-card" data-tilt data-tilt-scale="1.05" data-tilt-max="10">
+                    <div class="detail-icon">
+                      <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div>
+                      <h4>Work Experience</h4>
+                      <p>5+ Years</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="about-actions">
+                  <a href="contact.html" class="btn btn-primary">
+                    Get In Touch
+                    <i class="fas fa-arrow-right"></i>
+                  </a>
+                  <a href="#" class="btn btn-outline" id="downloadResume">
+                    <i class="fas fa-download"></i>
+                    Download CV
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <section class="section section-light">
+        <div class="container">
+          <div class="section-header">
+            <span class="section-tag">🚀 My Journey</span>
+            <h2 class="section-title">Work Experience</h2>
+          </div>
+          
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-icon">🏥</div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-date">April 2025 – Present</div>
+                <h3>Administrative Support (Volunteer)</h3>
+                <p class="timeline-subtitle">Primary Health Care</p>
+                <ul class="timeline-list">
+                  <li>Built an offline-first React Native + Expo app for patient and appointment management.</li>
+                  <li>Registered and updated records on PHCIS and TIER.NET with strict confidentiality.</li>
+                  <li>Managed folder systems (electronic/physical) and scheduled admissions.</li>
+                  <li>Merged duplicate records and ensured database integrity.</li>
+                  <li>Executed downtime protocols and captured public-health stats.</li>
+                  <li>Issued PHC/CDC cards and prepared monthly reports.</li>
+                  <li>Diagnosed hardware/software issues and escalated for resolution.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-icon">🏥</div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-date">May 2023 – March 2025</div>
+                <h3>Admin Intern</h3>
+                <p class="timeline-subtitle">Primary Health Care</p>
+                <ul class="timeline-list">
+                  <li>Administered patient data via PHCIS and TIER.NET.</li>
+                  <li>Coordinated admissions, scheduling, and downtime prep folders.</li>
+                  <li>Merged records, maintained filing integrity, and enforced downtime procedures.</li>
+                  <li>Captured public-health stats and generated monthly reports.</li>
+                  <li>Managed switchboard, HealthNet transport bookings, and general clerical duties.</li>
+                  <li>Participated in process improvement for appointment systems.</li>
+                  <li>Monitored supply levels and submitted resource orders.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-icon">👨‍🏫</div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-date">Nov 2021 – Sept 2022</div>
+                <h3>ICT Champion / E-cadre</h3>
+                <p class="timeline-subtitle">Public Education</p>
+                <ul class="timeline-list">
+                  <li>Migrated and maintained data on CEMIS and PMPS.</li>
+                  <li>Diagnosed hardware/network issues and configured ICT setups.</li>
+                  <li>Worked with helpdesk to resolve escalated issues.</li>
+                  <li>Trained educators on Math's Curriculum Online.</li>
+                  <li>Conducted growth mindset workshops and performed clerical documentation.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-icon">🛒</div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-date">Mar 2019 – Dec 2020</div>
+                <h3>Customer Service</h3>
+                <p class="timeline-subtitle">Retail</p>
+                <ul class="timeline-list">
+                  <li>Handled transactions, returns, and cash drawer management.</li>
+                  <li>Upsold reward programs and in-store promotions.</li>
+                  <li>Managed phone queries and followed loss-prevention protocols.</li>
+                  <li>Collaborated with team to ensure customer service efficiency.</li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <div class="timeline-icon">👨‍🏫</div>
+              </div>
+              <div class="timeline-content">
+                <div class="timeline-date">Apr 2018 – Mar 2019</div>
+                <h3>ICT / Teacher's Assistant</h3>
+                <p class="timeline-subtitle">Public Education</p>
+                <ul class="timeline-list">
+                  <li>Supported teachers with prep materials and exam invigilation.</li>
+                  <li>Maintained ICT hardware and resolved connectivity issues.</li>
+                  <li>Advised on tech procurement and performed digital migrations.</li>
+                  <li>Handled clerical duties and supported academic staff operations.</li>
+                </ul>
+              </div>
+            </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <p>&copy;2025 Crafted with Windsurf & ❤️ by Romano Muller.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://unpkg.com/vanilla-tilt@1.8.0/dist/vanilla-tilt.min.js"></script>
+    <script>
+      // Initialize vanilla-tilt for 3D card effects
+      document.addEventListener('DOMContentLoaded', () => {
+        if (typeof VanillaTilt !== 'undefined') {
+          VanillaTilt.init(document.querySelectorAll("[data-tilt]"), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.3,
+            scale: 1.05,
+            perspective: 1000
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
