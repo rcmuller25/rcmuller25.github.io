@@ -3,30 +3,29 @@ let isAnimating = false;
 let lastAnimationTime = 0;
 const ANIMATION_THROTTLE = 1000 / 30; // Target 30fps
 
+// Check if device is mobile
+const isMobile = () => {
+  // Check for mobile user agents
+  const mobileCheck = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  // Additional check for small screens
+  const isSmallScreen = window.innerWidth < 768;
+  return mobileCheck || isSmallScreen;
+};
+
 document.addEventListener('DOMContentLoaded', () => {
-  // Use requestIdleCallback for non-critical initializations
-  if ('requestIdleCallback' in window) {
-    requestIdleCallback(() => {
-      initScrollAnimations();
-      initProjectCards();
-      initSkillBars();
-      initContactForm();
-    }, { timeout: 1000 });
-  } else {
-    // Fallback for browsers that don't support requestIdleCallback
-    setTimeout(() => {
-      initScrollAnimations();
-      initProjectCards();
-      initSkillBars();
-      initContactForm();
-    }, 300);
-  }
+  // Always initialize these core features
+  initScrollAnimations();
+  initProjectCards();
+  initSkillBars();
+  initContactForm();
   
-  // Only initialize heavy animations if user is not on a mobile device and prefers reduced motion is off
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  // Only initialize heavy animations on desktop/tablet and if reduced motion is not preferred
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   
-  if (!isMobile && !prefersReducedMotion) {
+  if (!isMobile() && !prefersReducedMotion) {
+    // Add a class to enable animations in CSS
+    document.documentElement.classList.add('animations-enabled');
+    
     // Use intersection observer to only initialize when needed
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -44,6 +43,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (mainContent) {
       observer.observe(mainContent);
     }
+  } else {
+    // Add a class to disable animations in CSS
+    document.documentElement.classList.add('animations-disabled');
+    
+    // Remove any animation containers that might be in the HTML
+    const animatedElements = document.querySelectorAll('.animated-bg, .space-star, .space-nebula, .interactive-particle');
+    animatedElements.forEach(el => el.remove());
   }
 });
 

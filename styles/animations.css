@@ -159,6 +159,22 @@
   50% { opacity: 0.5; transform: scale(1); }
 }
 
+/* Disable animations on mobile */
+.animations-disabled .animated-bg,
+.animations-disabled .space-star,
+.animations-disabled .space-nebula,
+.animations-disabled .interactive-particle,
+.animations-disabled [class*='animate-'],
+.animations-disabled [class*='animation-'],
+.animations-disabled [class*='parallax'] {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: none !important;
+}
+
 /* Optimized Animated Background */
 .animated-bg {
   position: fixed;
