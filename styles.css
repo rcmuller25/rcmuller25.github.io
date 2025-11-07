@@ -186,29 +186,22 @@ nav a:hover { color: #fff; }
 }
 
 /* projects */
-.projects-grid { 
-  display: grid; 
-  grid-template-columns: repeat(2, 1fr); 
-  gap: 16px; 
+.project { 
+  padding: 16px; 
+  border-radius: 12px; 
+  background: rgba(255, 255, 255, 0.02); 
+  border: 1px solid rgba(255, 255, 255, 0.04); 
+  transition: all 0.3s ease;
 }
 
-.project { 
-  display: flex; 
-  flex-direction: column; 
-  gap: 10px; 
-  padding: 14px; 
-  border-radius: 12px; 
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.012), rgba(255, 255, 255, 0.01)); 
-  border: 1px solid rgba(255, 255, 255, 0.03); 
+.project:hover {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.08);
 }
 
 .thumb { 
-  height: 140px; 
-  border-radius: 10px; 
-  background: linear-gradient(135deg, rgba(255, 209, 102, 0.08), rgba(255, 138, 0, 0.06)); 
-  display: grid; 
-  place-items: center; 
-  font-weight: 700; 
+  border-radius: 8px; 
+  background: var(--glass); 
 }
 
 .tags { 
@@ -353,8 +346,9 @@ footer {
   .hero { 
     grid-template-columns: 1fr; 
   }
-  .projects-grid { 
-    grid-template-columns: 1fr; 
+  .card > div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
   }
   .testimonials { 
     grid-template-columns: 1fr; 
