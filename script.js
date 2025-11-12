@@ -84,3 +84,49 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+// Case study toggle
+function toggleCase(header) {
+  const card = header.closest('.case-study-card');
+  const content = card.querySelector('.case-study-content');
+  const toggle = card.querySelector('.case-toggle');
+  const isOpen = content.style.display === 'block';
+  
+  // Close all other case studies
+  document.querySelectorAll('.case-study-content').forEach(c => {
+    if (c !== content) {
+      c.style.display = 'none';
+      c.closest('.case-study-card').querySelector('.case-toggle').textContent = '+';
+      c.closest('.case-study-card').querySelector('.case-toggle').style.transform = 'rotate(0deg)';
+    }
+  });
+  
+  // Toggle current case study
+  if (isOpen) {
+    content.style.display = 'none';
+    toggle.textContent = '+';
+    toggle.style.transform = 'rotate(0deg)';
+  } else {
+    content.style.display = 'block';
+    toggle.textContent = '−';
+    toggle.style.transform = 'rotate(90deg)';
+  }
+}
+
+// Image modal functions
+function openImageModal(imageSrc, caption) {
+  const modal = document.getElementById('imageModal');
+  const modalImg = document.getElementById('modalImage');
+  const modalCaption = document.getElementById('modalCaption');
+  
+  modal.style.display = 'block';
+  modalImg.src = imageSrc;
+  modalCaption.textContent = caption;
+  document.body.style.overflow = 'hidden';
+}
+
+function closeImageModal() {
+  const modal = document.getElementById('imageModal');
+  modal.style.display = 'none';
+  document.body.style.overflow = 'auto';
+}

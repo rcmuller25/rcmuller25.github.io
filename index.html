@@ -107,8 +107,12 @@
         <!-- Featured Project -->
         <div class="card" style="margin-bottom:32px">
           <div style="display:grid;grid-template-columns:300px 1fr;gap:24px;align-items:start">
-            <div class="thumb"
-              style="background: url('assets/sihha.jpeg') center/cover;height:200px;border-radius:12px"></div>
+            <div style="position:relative;cursor:pointer;height:200px;border-radius:12px;overflow:hidden" onclick="openImageModal('assets/sihha.jpeg', 'SIHHA - TB/HIV Treatment Assistant')">
+              <img src="assets/sihha.jpeg" alt="SIHHA" style="width:100%;height:100%;object-fit:cover;object-position:top">
+              <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.7);padding:6px 10px;border-radius:6px;font-size:12px;color:var(--brand)">
+                Click to view
+              </div>
+            </div>
             <div>
               <div style="font-weight:700;font-size:1.2em;margin-bottom:8px">SIHHA - TB/HIV Treatment Assistant</div>
               <div style="color:var(--muted);margin-bottom:16px">Healthcare app that runs treatment decision logic in
@@ -132,28 +136,192 @@
         </div>
 
         <div style="display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:16px">
-          <article class="project">
-            <div class="thumb" style="background: url('assets/arendsebours.png') center/cover;height:140px"></div>
+          <article class="project" style="cursor:pointer" onclick="openImageModal('assets/arendsebouers.jpeg', 'Arendse Bouers Website')">
+            <div style="position:relative;overflow:hidden;height:140px;border-radius:8px;margin-bottom:12px">
+              <img src="assets/arendsebouers.jpeg" alt="Arendse Bouers Website" style="width:100%;object-fit:cover;object-position:top">
+              <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.7);padding:6px 10px;border-radius:6px;font-size:12px;color:var(--brand)">
+                Click to view full site
+              </div>
+            </div>
             <div style="font-weight:600;margin:12px 0 6px">Arendse Bouers</div>
             <div style="color:var(--muted);font-size:13px;margin-bottom:12px">General construction company website</div>
             <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
           </article>
 
-          <article class="project">
-            <div class="thumb" style="background: url('assets/ehconcrete.co.za.jpeg') center/cover;height:140px"></div>
+          <article class="project" style="cursor:pointer" onclick="openImageModal('assets/ehconcrete.co.za.jpeg', 'Eagle Home Concrete')">
+            <div style="position:relative;overflow:hidden;height:140px;border-radius:8px;margin-bottom:12px">
+              <img src="assets/ehconcrete.co.za.jpeg" alt="Eagle Home Concrete" style="width:100%;height:100%;object-fit:cover;object-position:top">
+              <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.7);padding:6px 10px;border-radius:6px;font-size:12px;color:var(--brand)">
+                Click to view full site
+              </div>
+            </div>
             <div style="font-weight:600;margin:12px 0 6px">Eagle Home Concrete</div>
             <div style="color:var(--muted);font-size:13px;margin-bottom:12px">Concrete, formwork & deck building
               specialist</div>
             <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
           </article>
 
-          <article class="project">
-            <div class="thumb" style="background: url('assets/verohne4cindy..jpeg') center/cover;height:140px"></div>
+          <article class="project" style="cursor:pointer" onclick="openImageModal('assets/verohne4cindy..jpeg', 'V&C Wedding Portal')">
+            <div style="position:relative;overflow:hidden;height:140px;border-radius:8px;margin-bottom:12px">
+              <img src="assets/verohne4cindy..jpeg" alt="V&C Wedding Portal" style="width:100%;height:100%;object-fit:cover;object-position:top">
+              <div style="position:absolute;bottom:8px;right:8px;background:rgba(0,0,0,0.7);padding:6px 10px;border-radius:6px;font-size:12px;color:var(--brand)">
+                Click to view full site
+              </div>
+            </div>
             <div style="font-weight:600;margin:12px 0 6px">V&C Wedding Portal</div>
             <div style="color:var(--muted);font-size:13px;margin-bottom:12px">Interactive wedding site with RSVP and
               photo uploads</div>
             <div class="tags"><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JS</span></div>
           </article>
+        </div>
+      </section>
+
+      <section id="case-studies" style="margin-top:40px">
+        <h2>Case Studies</h2>
+        <p style="color:var(--muted);margin-top:8px;text-align:center;margin-bottom:24px">WordPress to vanilla web - how I modernized client sites</p>
+
+        <div style="display:grid;gap:20px;margin-top:24px">
+          <!-- Case Study 1: Ciolli -->
+          <div class="case-study-card card">
+            <div class="case-study-header" style="cursor:pointer;display:flex;justify-content:space-between;align-items:start;gap:16px" onclick="toggleCase(this)">
+              <div style="flex:1">
+                <h3 style="margin:0 0 8px 0;font-size:1.3em">Ciolli Ready Mix Concrete</h3>
+                <p style="color:var(--muted);margin:0;font-size:0.95em">From bloated WordPress to lightning-fast static site</p>
+              </div>
+              <div class="case-toggle" style="font-size:24px;color:var(--brand);transition:transform 0.3s ease">+</div>
+            </div>
+            <div class="case-study-content" style="display:none;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)">
+              <!-- Before/After Comparison -->
+              <div style="margin-bottom:32px">
+                <h4 style="margin:0 0 16px 0;text-align:center">Before & After</h4>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+                  <div>
+                    <div style="color:var(--muted);font-size:0.9em;margin-bottom:8px;text-align:center">Before (WordPress)</div>
+                    <img src="assets/Ciolli Before.jpeg" alt="Ciolli Before" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1)">
+                  </div>
+                  <div>
+                    <div style="color:var(--brand);font-size:0.9em;margin-bottom:8px;text-align:center">After (Vanilla)</div>
+                    <img src="assets/Ciolli After.jpeg" alt="Ciolli After" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1)">
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px">
+                <div>
+                  <h4 style="margin:0 0 12px 0;color:var(--brand)">The Problem</h4>
+                  <ul style="color:var(--muted);margin:0;padding-left:20px">
+                    <li>Slow loading times (5+ seconds)</li>
+                    <li>Outdated WordPress theme</li>
+                    <li>Security vulnerabilities</li>
+                    <li>High hosting costs</li>
+                    <li>Poor mobile experience</li>
+                    <li>Cluttered, confusing layout</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="margin:0 0 12px 0;color:var(--brand)">The Solution</h4>
+                  <ul style="color:var(--muted);margin:0;padding-left:20px">
+                    <li>Clean HTML/CSS/JS rebuild</li>
+                    <li>Mobile-first responsive design</li>
+                    <li>Optimized images and assets</li>
+                    <li>Modern contact form</li>
+                    <li>SEO-friendly structure</li>
+                    <li>Clear visual hierarchy</li>
+                  </ul>
+                </div>
+              </div>
+              <div style="background:rgba(255,255,255,0.02);padding:20px;border-radius:12px;margin-bottom:20px">
+                <h4 style="margin:0 0 16px 0">Results</h4>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px">
+                  <div style="text-align:center">
+                    <div style="font-size:2em;font-weight:700;color:var(--brand)">90%+</div>
+                    <div style="color:var(--muted);font-size:0.9em">Faster load time</div>
+                  </div>
+                  <div style="text-align:center">
+                    <div style="font-size:2em;font-weight:700;color:var(--brand)">Zero</div>
+                    <div style="color:var(--muted);font-size:0.9em">Plugin dependencies</div>
+                  </div>
+                  <div style="text-align:center">
+                    <div style="font-size:2em;font-weight:700;color:var(--brand)">100%</div>
+                    <div style="color:var(--muted);font-size:0.9em">Mobile optimized</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">Vanilla JS</span>
+                <span class="tag">Performance</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Case Study 2: Lenvalco -->
+          <div class="case-study-card card">
+            <div class="case-study-header" style="cursor:pointer;display:flex;justify-content:space-between;align-items:start;gap:16px" onclick="toggleCase(this)">
+              <div style="flex:1">
+                <h3 style="margin:0 0 8px 0;font-size:1.3em">Lenvalco Ready Mix Concrete</h3>
+                <p style="color:var(--muted);margin:0;font-size:0.95em">Complete rebuild after WordPress site failure</p>
+              </div>
+              <div class="case-toggle" style="font-size:24px;color:var(--brand);transition:transform 0.3s ease">+</div>
+            </div>
+            <div class="case-study-content" style="display:none;margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.06)">
+              <!-- After Only -->
+              <div style="margin-bottom:32px">
+                <h4 style="margin:0 0 16px 0;text-align:center">The New Site</h4>
+                <div style="max-width:600px;margin:0 auto">
+                  <div style="color:var(--brand);font-size:0.9em;margin-bottom:8px;text-align:center">Built from scratch (WordPress site was completely broken)</div>
+                  <img src="assets/Lenvalco After.jpeg" alt="Lenvalco After" style="width:100%;border-radius:8px;border:1px solid rgba(255,255,255,0.1)">
+                </div>
+              </div>
+
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:24px">
+                <div>
+                  <h4 style="margin:0 0 12px 0;color:var(--brand)">The Problem</h4>
+                  <ul style="color:var(--muted);margin:0;padding-left:20px">
+                    <li>WordPress site completely broken</li>
+                    <li>Site wouldn't even load</li>
+                    <li>Lost customer trust</li>
+                    <li>No online presence</li>
+                    <li>Urgent need for replacement</li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 style="margin:0 0 12px 0;color:var(--brand)">The Solution</h4>
+                  <ul style="color:var(--muted);margin:0;padding-left:20px">
+                    <li>Built from scratch with vanilla code</li>
+                    <li>Modern orange/navy color scheme</li>
+                    <li>Clear service presentation</li>
+                    <li>Trust-building elements</li>
+                    <li>Fast, reliable hosting</li>
+                  </ul>
+                </div>
+              </div>
+              <div style="background:rgba(255,255,255,0.02);padding:20px;border-radius:12px;margin-bottom:20px">
+                <h4 style="margin:0 0 16px 0">Results</h4>
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:16px">
+                  <div style="text-align:center">
+                    <div style="font-size:2em;font-weight:700;color:var(--brand)">24/7</div>
+                    <div style="color:var(--muted);font-size:0.9em">Reliable uptime</div>
+                  </div>
+                  <div style="text-align:center">
+                    <div style="font-size:2em;font-weight:700;color:var(--brand)">Fast</div>
+                    <div style="color:var(--muted);font-size:0.9em">Load times</div>
+                  </div>
+                  <div style="text-align:center">
+                    <div style="font-size:2em;font-weight:700;color:var(--brand)">Modern</div>
+                    <div style="color:var(--muted);font-size:0.9em">Professional look</div>
+                  </div>
+                </div>
+              </div>
+              <div class="tags">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">JavaScript</span>
+                <span class="tag">Rescue Project</span>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -287,6 +455,17 @@
   </div>
   </section>
   </main>
+  </div>
+
+  <!-- Image Modal -->
+  <div id="imageModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;padding:20px;overflow:auto" onclick="closeImageModal()">
+    <div style="position:sticky;top:20px;text-align:right;margin-bottom:20px">
+      <button onclick="closeImageModal()" style="background:var(--brand);color:#0b0f12;border:none;padding:12px 24px;border-radius:8px;font-weight:700;cursor:pointer;font-size:16px">Close ✕</button>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;text-align:center">
+      <img id="modalImage" src="" alt="" style="width:100%;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.5)">
+      <div id="modalCaption" style="color:var(--brand);margin-top:16px;font-size:18px;font-weight:600"></div>
+    </div>
   </div>
 
   <script src="script.js"></script>

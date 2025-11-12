@@ -228,6 +228,33 @@ nav a:hover { color: #fff; }
   padding: 18px; 
 }
 
+/* case studies */
+.case-study-card {
+  transition: all 0.3s ease;
+}
+
+.case-study-card:hover {
+  border-color: rgba(255,255,255,0.1);
+}
+
+.case-study-header:hover {
+  color: #fff;
+}
+
+.case-study-content h4 {
+  font-size: 1em;
+  margin: 0 0 12px 0;
+}
+
+.case-study-content ul {
+  font-size: 0.95em;
+  line-height: 1.8;
+}
+
+.case-study-content ul li {
+  margin-bottom: 8px;
+}
+
 /* testimonials */
 .testimonials { 
   display: grid; 
